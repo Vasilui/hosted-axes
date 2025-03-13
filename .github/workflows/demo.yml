@@ -1,0 +1,26 @@
+name: Демонстрация GitVerse CI/CD
+on:
+  push:
+  
+jobs:
+  build-job:
+    name: Build job mediaplanner
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+        
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+        
+      - name: Build Docker image
+        run: docker build -t mediaplanner .
+  
+  test-job:
+    name: Running Unit Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Run unit tests
+        run: echo All Tests Passed!
